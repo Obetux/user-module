@@ -1,0 +1,32 @@
+monolog:
+    use_microseconds: false
+    channels: ['user', 'auth', 'auth_extra']
+    handlers:
+        # this "file_log" key could be anything
+        user_log:
+            type:  rotating_file
+            # log to var/logs/(environment).log
+            path: "%kernel.logs_dir%/user_%kernel.environment%.log"
+            # log *all* messages (debug is lowest level)
+            level: info
+            formatter: qubit.line.formatter
+            max_files: 30
+            channels: [user]
+        auth_log:
+            type:  rotating_file
+            # log to var/logs/(environment).log
+            path: "%kernel.logs_dir%/auth_%kernel.environment%.log"
+            # log *all* messages (debug is lowest level)
+            level: info
+            formatter: qubit.line.formatter
+            max_files: 30
+            channels: [auth]
+        auth_extra_log:
+            type:  rotating_file
+            # log to var/logs/(environment).log
+            path: "%kernel.logs_dir%/auth_extra_%kernel.environment%.log"
+            # log *all* messages (debug is lowest level)
+            level: info
+            formatter: qubit.line.formatter
+            max_files: 30
+            channels: [auth_extra]
